@@ -1,10 +1,14 @@
+@php
+    use Illuminate\Support\Str;
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lane Shirt Cut II - stilo</title>
+    <title>{{ $product->nama_produk }} - stilo</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
     <style>
         * {
             margin: 0;
@@ -109,6 +113,28 @@
             justify-content: center;
         }
 
+        /* Back to Home Button */
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 10px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .back-to-home:hover {
+            background: #555;
+            transform: translateX(-2px);
+        }
+
         /* Breadcrumb */
         .breadcrumb {
             padding: 20px 0;
@@ -142,40 +168,14 @@
             margin-bottom: 60px;
         }
 
-        /* Product Images */
+        /* Product Images - Modified for single image */
         .product-images {
             display: flex;
-            gap: 20px;
-        }
-
-        .thumbnail-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .thumbnail {
-            width: 80px;
-            height: 80px;
-            background: #f5f5f5;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 10px;
-            color: #999;
-        }
-
-        .thumbnail:hover,
-        .thumbnail.active {
-            border-color: #333;
         }
 
         .main-image {
-            flex: 1;
+            width: 100%;
             height: 600px;
             background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
             border-radius: 12px;
@@ -186,6 +186,13 @@
             color: #999;
             position: relative;
             overflow: hidden;
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
         }
 
         .zoom-btn {
@@ -742,16 +749,6 @@
                 gap: 40px;
             }
 
-            .product-images {
-                flex-direction: column-reverse;
-            }
-
-            .thumbnail-list {
-                flex-direction: row;
-                overflow-x: auto;
-                padding-bottom: 8px;
-            }
-
             .main-image {
                 height: 400px;
             }
@@ -838,14 +835,12 @@
         <div class="container">
             <div class="header-content">
                 <div class="header-left">
-                    <a href="#" class="logo">Guza</a>
+                    <a href="#" class="logo">Stilo</a>
                     <nav class="nav">
-                        <a href="#" class="nav-link">Home</a>
-                        <a href="#" class="nav-link active">Shop</a>
-                        <a href="#" class="nav-link">Products</a>
-                        <a href="#" class="nav-link">Pages</a>
-                        <a href="#" class="nav-link">Blog</a>
-                        <a href="#" class="nav-link">Elements</a>
+                        <a href="/" class="nav-link">Home</a>
+                        <a href="{{ route('about') }}" class="nav-link">About</a>
+                        <a href="{{ route('blog') }}" class="nav-link">Blog</a>
+                        <a href="{{ route('elements') }}" class="nav-link">Elements</a>
                     </nav>
                 </div>
                 <div class="header-right">
@@ -874,33 +869,38 @@
         </div>
     </header>
 
-    <!-- Breadcrumb -->
+    <!-- Back to Home Button -->
     <div class="container">
-        <div class="breadcrumb">
-            <a href="#">Home</a>
-            <span>/</span>
-            <a href="#">Shop</a>
-            <span>/</span>
-            <a href="#">Shirts</a>
-            <span>/</span>
-            <span>Lane Shirt Cut II</span>
-        </div>
+        <a href="/" class="back-to-home">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Kembali
+        </a>
     </div>
 
+   <!-- Breadcrumb -->
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="#">{{ $product->kategori ?? 'Kategori Tidak Diketahui' }}</a>
+            <span>/</span>
+            <span>{{ $product->nama_produk }}</span>
+        </div>
+    </div>
+    
     <!-- Product Section -->
     <section class="product-section">
         <div class="container">
             <div class="product-container">
-                <!-- Product Images -->
                 <div class="product-images">
-                    <div class="thumbnail-list">
-                        <div class="thumbnail active">IMG 1</div>
-                        <div class="thumbnail">IMG 2</div>
-                        <div class="thumbnail">IMG 3</div>
-                        <div class="thumbnail">IMG 4</div>
-                    </div>
                     <div class="main-image">
-                        Main Product Image
+                        @if(isset($product->image) && $product->image)
+                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->nama_produk }}">
+                        @else
+                            Main Product Image
+                        @endif
                         <button class="zoom-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <circle cx="11" cy="11" r="8"></circle>
@@ -913,12 +913,13 @@
 
                 <!-- Product Info -->
                 <div class="product-info">
-                    <h1 class="product-title">Lane Shirt Cut II</h1>
+                    <h1 class="product-title">{{ $product->nama_produk }}</h1>
+
                     <div class="product-price">
-                        $16.00
-                        <span class="price-original">$20.00</span>
+                        Rp{{ number_format($product->harga) }}
                         <span class="discount-badge">20% OFF</span>
                     </div>
+
                     <div class="product-rating">
                         <div class="stars">
                             <span class="star">★</span>
@@ -930,7 +931,7 @@
                         <span class="rating-text">4.0 (128 reviews)</span>
                     </div>
                     <p class="product-description">
-                        A comfortable and stylish shirt perfect for casual wear. Made from high-quality cotton blend fabric that's soft, breathable, and durable. Features a modern cut that flatters all body types and provides all-day comfort.
+                        {{ \Illuminate\Support\Str::words($product->deskripsi, 20, '...') }}
                     </p>
 
                     <!-- Product Options -->
@@ -946,61 +947,53 @@
                             </div>
                         </div>
 
-                        <div class="option-group">
-                            <div class="option-label">Size</div>
-                            <div class="size-options">
-                                <div class="size-option unavailable">XS</div>
-                                <div class="size-option">S</div>
-                                <div class="size-option selected">M</div>
-                                <div class="size-option">L</div>
-                                <div class="size-option">XL</div>
-                                <div class="size-option">XXL</div>
-                            </div>
-                        </div>
-                    </div>
-
                     <!-- Quantity -->
-                    <div class="quantity-section">
-                        <span class="quantity-label">Quantity</span>
-                        <div class="quantity-controls">
-                            <button class="quantity-btn">-</button>
-                            <input type="number" class="quantity-input" value="1" min="1" max="10" readonly>
-                            <button class="quantity-btn">+</button>
+                        <div class="quantity-section">
+                            <span class="quantity-label">Quantity</span>
+                            <div class="quantity-controls">
+                                <button class="quantity-btn" id="decreaseBtn">-</button>
+                                <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="3" readonly>
+                                <button class="quantity-btn" id="increaseBtn">+</button>
+                            </div>
+                            <span class="stock-info">
+                                {{ $product->status === 'Tersedia' ? 'In stock' : 'Out of stock' }}
+                            </span>
                         </div>
-                        <span class="stock-info">12 items left</span>
-                    </div>
 
-                    <!-- Action Buttons -->
-                    <div class="action-buttons">
-                        <a href="checkout.html" class="btn btn-buy-now">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="9" cy="21" r="1"></circle>
-                                <circle cx="20" cy="21" r="1"></circle>
-                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                            </svg>
-                            Buy Now
-                        </a>
-                        <button class="btn btn-secondary">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <path d="M16 10a4 4 0 0 1-8 0"></path>
-                            </svg>
-                            Add to Cart
-                        </button>
-                        <button class="btn btn-icon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                            </svg>
-                        </button>
-                    </div>
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <a 
+                            href="https://web.whatsapp.com/send?phone=6282131447400&text={{ urlencode('Halo, saya mau beli produk ' . $product->nama_produk . '. Apakah masih tersedia? Saya ingin beli.') }}" 
+                            class="btn btn-buy-now" 
+                            target="_blank">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                Chat & Beli Via Whatsapp
+                            </a>
+                            <button class="btn btn-secondary">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                </svg>
+                                Add to Cart
+                            </button>
+                            <button class="btn btn-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                </svg>
+                            </button>
+                        </div>
 
                     <!-- Product Features -->
                     <div class="product-features">
                         <div class="feature-list">
                             <div class="feature-item">
                                 <div class="feature-icon">🚚</div>
-                                <span class="feature-text">Free shipping on orders over $50</span>
+                                <span class="feature-text">Free shipping on orders over Rp 50.000</span>
                             </div>
                             <div class="feature-item">
                                 <div class="feature-icon">↩</div>
@@ -1022,82 +1015,21 @@
             <!-- Product Tabs -->
             <div class="product-tabs">
                 <div class="tab-nav">
-                    <button class="tab-btn active">Description</button>
-                    <button class="tab-btn">Size Guide</button>
+                    <button class="tab-btn active">Description</button> 
                     <button class="tab-btn">Care Instructions</button>
                     <button class="tab-btn">Reviews (128)</button>
                 </div>
 
                 <div class="tab-content active">
                     <h3>Product Description</h3>
-                    <p>The Lane Shirt Cut II is designed for the modern individual who values both comfort and style. Crafted from a premium cotton blend, this shirt offers exceptional softness and breathability.</p>
-                    <p><strong>Features include:</strong></p>
-                    <ul>
-                        <li>Premium cotton blend fabric (60% cotton, 40% polyester)</li>
-                        <li>Modern slim fit design</li>
-                        <li>Pre-shrunk for consistent sizing</li>
-                        <li>Reinforced seams for durability</li>
-                        <li>Machine washable</li>
-                        <li>Available in multiple colors</li>
-                    </ul>
-                </div>
-
-                <div class="tab-content">
-                    <h3>Size Guide</h3>
-                    <p>Please refer to the size chart below to find your perfect fit:</p>
-                    <table class="size-chart">
-                        <thead>
-                            <tr>
-                                <th>Size</th>
-                                <th>Chest (inches)</th>
-                                <th>Length (inches)</th>
-                                <th>Shoulder (inches)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>XS</strong></td>
-                                <td>32-34</td>
-                                <td>26</td>
-                                <td>16</td>
-                            </tr>
-                            <tr>
-                                <td><strong>S</strong></td>
-                                <td>34-36</td>
-                                <td>27</td>
-                                <td>17</td>
-                            </tr>
-                            <tr>
-                                <td><strong>M</strong></td>
-                                <td>36-38</td>
-                                <td>28</td>
-                                <td>18</td>
-                            </tr>
-                            <tr>
-                                <td><strong>L</strong></td>
-                                <td>38-40</td>
-                                <td>29</td>
-                                <td>19</td>
-                            </tr>
-                            <tr>
-                                <td><strong>XL</strong></td>
-                                <td>40-42</td>
-                                <td>30</td>
-                                <td>20</td>
-                            </tr>
-                            <tr>
-                                <td><strong>XXL</strong></td>
-                                <td>42-44</td>
-                                <td>31</td>
-                                <td>21</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    @foreach(explode('|', $product->deskripsi) as $desc)
+                    <p>{{ $desc }}</p>
+                    @endforeach
                 </div>
 
                 <div class="tab-content">
                     <h3>Care Instructions</h3>
-                    <p>To maintain the quality and longevity of your Lane Shirt Cut II:</p>
+                    <p>To maintain the quality and longevity of your product:</p>
                     <ul>
                         <li>Machine wash cold with like colors</li>
                         <li>Use mild detergent</li>
@@ -1111,7 +1043,7 @@
 
                 <div class="tab-content">
                     <h3>Customer Reviews</h3>
-                    <p>See what our customers are saying about the Lane Shirt Cut II:</p>
+                    <p>See what our customers are saying about this product:</p>
                     
                     <div class="review-item">
                         <div class="review-header">
@@ -1126,7 +1058,7 @@
                             <span class="reviewer-name">Mike R.</span>
                             <span class="review-rating">⭐⭐⭐⭐⭐</span>
                         </div>
-                        <p class="review-text">"Excellent shirt for the price. Washes well and maintains its shape. The brown color is exactly as shown in the pictures."</p>
+                        <p class="review-text">"Excellent product for the price. Washes well and maintains its shape. The color is exactly as shown in the pictures."</p>
                     </div>
 
                     <div class="review-item">
@@ -1134,198 +1066,34 @@
                             <span class="reviewer-name">Jessica L.</span>
                             <span class="review-rating">⭐⭐⭐⭐☆</span>
                         </div>
-                        <p class="review-text">"Good quality shirt, fits true to size. Only wish there were more color options available. Fast shipping too!"</p>
+                        <p class="review-text">"Good quality product, fits true to size. Only wish there were more color options available. Fast shipping too!"</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Related Products -->
+           <!-- Related Products -->
             <div class="related-products">
                 <h2 class="section-title">You Might Also Like</h2>
                 <div class="related-grid">
-                    <div class="related-item">
-                        <div class="related-image">Related Product 1</div>
-                        <div class="related-content">
-                            <div class="related-name">Classic Cotton Tee</div>
-                            <div class="related-price">$14.00</div>
-                        </div>
-                    </div>
-                    <div class="related-item">
-                        <div class="related-image">Related Product 2</div>
-                        <div class="related-content">
-                            <div class="related-name">Casual Button Down</div>
-                            <div class="related-price">$22.00</div>
-                        </div>
-                    </div>
-                    <div class="related-item">
-                        <div class="related-image">Related Product 3</div>
-                        <div class="related-content">
-                            <div class="related-name">Premium Polo Shirt</div>
-                            <div class="related-price">$18.00</div>
-                        </div>
-                    </div>
-                    <div class="related-item">
-                        <div class="related-image">Related Product 4</div>
-                        <div class="related-content">
-                            <div class="related-name">Vintage Henley</div>
-                            <div class="related-price">$16.00</div>
-                        </div>
-                    </div>
+                    @if(isset($relatedProducts))
+                        @foreach($relatedProducts as $related)
+                            <div class="related-item">
+                                <div class="related-image">
+                                    @if(isset($related->image) && $related->image)
+                                        <img src="{{ asset('storage/' . $related->image) }}" alt="{{ $related->nama_produk }}">
+                                    @else
+                                        Product Image
+                                    @endif
+                                </div>
+                                <div class="related-content">
+                                    <div class="related-name">{{ $related->nama_produk }}</div>
+                                    <div class="related-price">Rp{{ number_format($related->harga) }}</div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Notification -->
-    <div class="notification" id="notification">
-        Item added to cart!
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Image thumbnails
-            const thumbnails = document.querySelectorAll('.thumbnail');
-            const mainImage = document.getElementById('mainImage');
-
-            thumbnails.forEach(thumb => {
-                thumb.addEventListener('click', function() {
-                    thumbnails.forEach(t => t.classList.remove('active'));
-                    this.classList.add('active');
-                    const imageNum = this.dataset.image;
-                    mainImage.textContent = Main Product Image ${imageNum};
-                });
-            });
-
-            // Color selection
-            const colorOptions = document.querySelectorAll('.color-option');
-            colorOptions.forEach(color => {
-                color.addEventListener('click', function() {
-                    colorOptions.forEach(c => c.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
-
-            // Size selection
-            const sizeOptions = document.querySelectorAll('.size-option:not(.unavailable)');
-            sizeOptions.forEach(size => {
-                size.addEventListener('click', function() {
-                    sizeOptions.forEach(s => s.classList.remove('selected'));
-                    this.classList.add('selected');
-                });
-            });
-
-            // Quantity controls
-            const quantityInput = document.getElementById('quantityInput');
-            const decreaseBtn = document.getElementById('decreaseBtn');
-            const increaseBtn = document.getElementById('increaseBtn');
-            const stockInfo = document.getElementById('stockInfo');
-
-            decreaseBtn.addEventListener('click', function() {
-                let value = parseInt(quantityInput.value);
-                if (value > 1) {
-                    quantityInput.value = value - 1;
-                    updateStockInfo();
-                }
-            });
-
-            increaseBtn.addEventListener('click', function() {
-                let value = parseInt(quantityInput.value);
-                if (value < 10) {
-                    quantityInput.value = value + 1;
-                    updateStockInfo();
-                }
-            });
-
-            quantityInput.addEventListener('change', function() {
-                let value = parseInt(this.value);
-                if (value < 1) this.value = 1;
-                if (value > 10) this.value = 10;
-                updateStockInfo();
-            });
-
-            function updateStockInfo() {
-                const remaining = 12 - parseInt(quantityInput.value);
-                if (remaining > 5) {
-                    stockInfo.textContent = ${remaining} items left;
-                    stockInfo.className = 'stock-info';
-                } else if (remaining > 0) {
-                    stockInfo.textContent = Only ${remaining} left!;
-                    stockInfo.className = 'stock-info low';
-                } else {
-                    stockInfo.textContent = 'Out of stock';
-                    stockInfo.className = 'stock-info out';
-                }
-            }
-
-            // Add to cart
-            const addToCartBtn = document.getElementById('addToCartBtn');
-            const cartBadge = document.querySelector('.cart-badge');
-            const notification = document.getElementById('notification');
-
-            addToCartBtn.addEventListener('click', function() {
-                const selectedColor = document.querySelector('.color-option.selected').dataset.color;
-                const selectedSize = document.querySelector('.size-option.selected').dataset.size;
-                const quantity = parseInt(quantityInput.value);
-
-                // Update cart badge
-                let currentCount = parseInt(cartBadge.textContent);
-                cartBadge.textContent = currentCount + quantity;
-
-                // Show notification
-                notification.classList.add('show');
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 3000);
-
-                // Simulate adding to cart
-                console.log('Added to cart:', {
-                    product: 'Lane Shirt Cut II',
-                    color: selectedColor,
-                    size: selectedSize,
-                    quantity: quantity,
-                    price: 16.00
-                });
-            });
-
-            // Wishlist toggle
-            const wishlistBtn = document.getElementById('wishlistBtn');
-            let isWishlisted = false;
-
-            wishlistBtn.addEventListener('click', function() {
-                isWishlisted = !isWishlisted;
-                if (isWishlisted) {
-                    this.style.color = '#ef4444';
-                    this.style.background = '#fef2f2';
-                } else {
-                    this.style.color = '#666';
-                    this.style.background = 'transparent';
-                }
-            });
-
-            // Product tabs
-            const tabBtns = document.querySelectorAll('.tab-btn');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const targetTab = this.dataset.tab;
-
-                    // Remove active class from all tabs and contents
-                    tabBtns.forEach(b => b.classList.remove('active'));
-                    tabContents.forEach(c => c.classList.remove('active'));
-
-                    // Add active class to clicked tab and corresponding content
-                    this.classList.add('active');
-                    document.getElementById(targetTab).classList.add('active');
-                });
-            });
-
-            // Zoom functionality
-            const zoomBtn = document.querySelector('.zoom-btn');
-            zoomBtn.addEventListener('click', function() {
-                alert('Zoom functionality would open a larger image view');
-            });
-        });
-    </script>
 </body>
 </html>

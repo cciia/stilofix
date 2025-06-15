@@ -516,7 +516,7 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo">Guza</a>
+                <a href="#" class="logo">Stilo</a>
                 <div class="checkout-steps">
                     <div class="step completed">
                         <span class="step-number">1</span>

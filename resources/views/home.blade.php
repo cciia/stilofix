@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}">
     <title>Stilo</title>
     <style>
-        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -74,116 +74,6 @@
             color: #666;
         }
         
-        /* Products Dropdown Menu */
-        .nav-item {
-            position: relative;
-        }
-        
-        .nav-item.has-dropdown:hover .dropdown-menu {
-            display: flex;
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: -20px;
-            background-color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 800px;
-            padding: 30px;
-            display: none;
-            z-index: 100;
-            border-radius: 4px;
-            margin-top: 10px;
-        }
-        
-        .dropdown-menu::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 30px;
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid white;
-        }
-        
-        .dropdown-content {
-            display: flex;
-            width: 100%;
-        }
-        
-        .dropdown-column {
-            flex: 1;
-            padding: 0 15px;
-        }
-        
-        .dropdown-column h3 {
-            font-size: 16px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        
-        .dropdown-links {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .dropdown-links a {
-            font-size: 14px;
-            color: #666;
-            transition: color 0.2s;
-            padding: 5px 0;
-        }
-        
-        .dropdown-links a:hover {
-            color: #000;
-        }
-        
-        .featured-products {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-        
-        .featured-product {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .featured-product-image {
-            width: 100%;
-            height: 120px;
-            background-color: #f9f9f9;
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-        
-        .featured-product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-        
-        .featured-product:hover img {
-            transform: scale(1.05);
-        }
-        
-        .featured-product-title {
-            font-size: 13px;
-            margin-bottom: 5px;
-        }
-        
-        .featured-product-price {
-            font-size: 13px;
-            font-weight: 600;
-        }
-        
         .header-icons {
             display: flex;
             gap: 15px;
@@ -212,25 +102,65 @@
         
         /* Shop Banner */
         .shop-banner {
+            position: relative;
             background-color: #f5f5f0;
-            padding: 40px 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
         }
         
         .shop-title {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .breadcrumb {
             display: flex;
             gap: 10px;
-            font-size: 14px;
-            color: #666;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.2s;
         }
         
         .breadcrumb a:hover {
+            color: white;
             text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         /* Shop Content */
@@ -284,53 +214,6 @@
             padding: 5px;
         }
         
-        /* Color Filter Popup */
-        .color-filter {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            border: 1px solid #eee;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 15px;
-            width: 200px;
-            z-index: 10;
-            display: none; /* Hide by default */
-        }
-        
-        .color-filter.active {
-            display: block; /* Show when active class is added */
-        }
-        
-        .color-filter h3 {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .color-options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        
-        .color-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 14px;
-        }
-        
-        .color-dot {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-        }
-        
-        .blue { background-color: #4169E1; }
-        .grey { background-color: #808080; }
-        .red { background-color: #FF6B6B; }
-        .yellow { background-color: #FFD700; }
-        
         /* Product Grid */
         .product-grid {
             display: grid;
@@ -383,33 +266,9 @@
             cursor: pointer;
         }
         
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin: 40px 0;
-        }
-        
-        .page-item {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 14px;
-        }
-        
-        .page-item.active {
-            background-color: #000;
-            color: #fff;
-        }
-        
-        .page-item:hover:not(.active) {
-            background-color: #f5f5f5;
-        }
+        .blue { background-color: #4169E1; }
+        .grey { background-color: #808080; }
+        .red { background-color: #FF6B6B; }
         
         /* Footer */
         footer {
@@ -539,13 +398,28 @@
             cursor: pointer;
         }
         
+        /* Logout Button Styling */
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #333;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 10px 0;
+            transition: color 0.2s;
+        }
+        
+        .logout-btn:hover {
+            color: #666;
+        }
+        
         @media (max-width: 992px) {
-            .dropdown-menu {
-                width: 600px;
-            }
-            
             .product-grid {
                 grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .shop-title {
+                font-size: 36px;
             }
         }
         
@@ -560,6 +434,18 @@
             
             .product-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .banner-image {
+                height: 300px;
+            }
+            
+            .shop-title {
+                font-size: 28px;
+            }
+            
+            .breadcrumb {
+                font-size: 14px;
             }
             
             .footer-top {
@@ -583,6 +469,14 @@
                 align-items: flex-start;
                 gap: 15px;
             }
+            
+            .banner-image {
+                height: 250px;
+            }
+            
+            .shop-title {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -592,62 +486,10 @@
         <div class="container header-container">
             <div class="logo">Stilo</div>
             <nav class="nav-menu">
-                <a href="#">Home</a>
-                <a href="#">Shop</a>
-                <div class="nav-item has-dropdown">
-                    <a href="#">Products</a>
-                    <!-- Products Dropdown Menu -->
-                    <div class="dropdown-menu">
-                        <div class="dropdown-content">
-                            <div class="dropdown-column">
-                                <h3>Categories</h3>
-                                <div class="dropdown-links">
-                                    <a href="#">T-Shirts</a>
-                                    <a href="#">Sweaters</a>
-                                    <a href="#">Jackets</a>
-                                    <a href="#">Coats</a>
-                                    <a href="#">Pants</a>
-                                    <a href="#">Shorts</a>
-                                    <a href="#">Accessories</a>
-                                </div>
-                            </div>
-                            <div class="dropdown-column">
-                                <h3>Collections</h3>
-                                <div class="dropdown-links">
-                                    <a href="#">New Arrivals</a>
-                                    <a href="#">Summer Collection</a>
-                                    <a href="#">Winter Essentials</a>
-                                    <a href="#">Casual Wear</a>
-                                    <a href="#">Formal Attire</a>
-                                    <a href="#">Limited Edition</a>
-                                    <a href="#">Sale Items</a>
-                                </div>
-                            </div>
-                            <div class="dropdown-column">
-                                <h3>Featured Products</h3>
-                                <div class="featured-products">
-                                    <div class="featured-product">
-                                        <div class="featured-product-image">
-                                            <img src="/placeholder.svg?height=120&width=150" alt="Featured Product 1">
-                                        </div>
-                                        <div class="featured-product-title">Premium Cotton Shirt</div>
-                                        <div class="featured-product-price">$24.99</div>
-                                    </div>
-                                    <div class="featured-product">
-                                        <div class="featured-product-image">
-                                            <img src="/placeholder.svg?height=120&width=150" alt="Featured Product 2">
-                                        </div>
-                                        <div class="featured-product-title">Wool Blend Coat</div>
-                                        <div class="featured-product-price">$89.99</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">Pages</a>
-                <a href="#">Blog</a>
-                <a href="#">Elements</a>
+                <a href="/">Home</a>
+                <a href="{{ route('about') }}">About</a>
+                <a href="{{ route('blog') }}">Blog</a>
+                <a href="{{ route('elements') }}">Elements</a>
             </nav>
             <div class="header-icons">
                 <div class="icon">
@@ -689,12 +531,15 @@
 
     <!-- Shop Banner -->
     <section class="shop-banner">
-        <div class="container">
-            <h1 class="shop-title">Shop</h1>
-            <div class="breadcrumb">
-                <a href="#">Home</a>
-                <span>/</span>
-                <span>Shop</span>
+        <img src="/images/headerhome.jpg" alt="Banner Toko" class="banner-image">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h1 class="shop-title">Shop</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <span>Stilo</span>
+                </div>
             </div>
         </div>
     </section>
@@ -710,37 +555,6 @@
                     </div>
                     <div class="filter-item">
                         <span>Categories</span>
-                    </div>
-                    <div class="filter-item" id="color-filter-toggle">
-                        <span>Color</span>
-                        <!-- Color Filter Popup -->
-                        <div class="color-filter" id="color-filter-popup">
-                            <h3>Colors</h3>
-                            <div class="color-options">
-                                <div class="color-option">
-                                    <span class="color-dot blue"></span>
-                                    <span>Blue</span>
-                                </div>
-                                <div class="color-option">
-                                    <span class="color-dot grey"></span>
-                                    <span>Grey</span>
-                                </div>
-                                <div class="color-option">
-                                    <span class="color-dot red"></span>
-                                    <span>Red</span>
-                                </div>
-                                <div class="color-option">
-                                    <span class="color-dot yellow"></span>
-                                    <span>Yellow</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="filter-item">
-                        <span>Size</span>
-                    </div>
-                    <div class="filter-item">
-                        <span>Brand</span>
                     </div>
                     <div class="filter-item">
                         <span>Price</span>
@@ -782,186 +596,22 @@
 
             <!-- Product Grid -->
             <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Brown Jacket">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Pink Hoodie">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Black Jacket">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Blue Sweater">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 5 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Floral Jacket">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 6 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Brown Coat">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 7 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Plaid Shirt">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 8 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Beige Coat">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 9 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Beige Shirt">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 10 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Pink Shirt">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 11 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Beige Shorts">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-
-                <!-- Product 12 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/placeholder.svg?height=300&width=250" alt="Grey Blazer">
-                    </div>
-                    <h3 class="product-title">Lace Shirt Cut II</h3>
-                    <div class="product-price">$16.00</div>
-                    <div class="product-colors">
-                        <span class="product-color blue"></span>
-                        <span class="product-color grey"></span>
-                        <span class="product-color red"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <div class="page-item active">1</div>
-                <div class="page-item">2</div>
-                <div class="page-item">3</div>
-                <div class="page-item">4</div>
-                <div class="page-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
-                </div>
+                @foreach ($products as $product)
+                    <a href="{{ route('products.show', $product->id) }}">
+                        <div class="product-card">
+                            <div class="product-image">
+                              <img src="{{ asset('storage/products/' . $product->gambar) }}" alt="{{ $product->nama_produk }}">
+                            </div>
+                            <h3 class="product-title">{{ $product->nama_produk }}</h3>
+                            <div class="product-price">Rp{{ number_format($product->harga) }}</div>
+                            <div class="product-colors">
+                                <span class="product-color blue"></span>
+                                <span class="product-color grey"></span>
+                                <span class="product-color red"></span>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -1019,43 +669,22 @@
             <div class="footer-bottom">
                 <div class="copyright">
                     <div class="logo">Stilo</div>
-                    <p>©2023 July. All rights reserved</p>
+                    <p>©2025 June. All rights reserved</p>
                 </div>
                 <div class="footer-right">
                     <div class="payment-methods">
-                        <div class="payment-icon">VISA</div>
-                        <div class="payment-icon">MC</div>
-                        <div class="payment-icon">AMEX</div>
-                        <div class="payment-icon">PP</div>
+                        <div class="payment-icon">BCA</div>
+                        <div class="payment-icon">BRI</div>
+                        <div class="payment-icon">BSI</div>
+                        <div class="payment-icon">Mandiri</div>
                     </div>
                     <div class="language-selector">
-                        <div class="selector">EN</div>
-                        <div class="selector">USD</div>
+                        <div class="selector">ID</div>
+                        <div class="selector">Rp</div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript for toggling color filter -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const colorFilterToggle = document.getElementById('color-filter-toggle');
-            const colorFilterPopup = document.getElementById('color-filter-popup');
-            
-            // Toggle color filter popup when clicking on the color filter item
-            colorFilterToggle.addEventListener('click', function(e) {
-                colorFilterPopup.classList.toggle('active');
-                e.stopPropagation(); // Prevent the click from bubbling up to the document
-            });
-            
-            // Close color filter popup when clicking outside of it
-            document.addEventListener('click', function(e) {
-                if (!colorFilterToggle.contains(e.target)) {
-                    colorFilterPopup.classList.remove('active');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
