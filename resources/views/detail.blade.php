@@ -896,8 +896,8 @@
             <div class="product-container">
                 <div class="product-images">
                     <div class="main-image">
-                        @if(isset($product->image) && $product->image)
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->nama_produk }}">
+                        @if(isset($product->gambar) && $product->gambar)
+                            <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}">
                         @else
                             Main Product Image
                         @endif
@@ -1077,10 +1077,11 @@
                 <div class="related-grid">
                     @if(isset($relatedProducts))
                         @foreach($relatedProducts as $related)
+                        <a href="{{ route('products.show', $related->id) }}" class="related-item">
                             <div class="related-item">
                                 <div class="related-image">
-                                    @if(isset($related->image) && $related->image)
-                                        <img src="{{ asset('storage/' . $related->image) }}" alt="{{ $related->nama_produk }}">
+                                    @if(isset($related->gambar) && $related->gambar)
+                                        <img src="{{ $related->gambar }}" alt="{{ $related->nama_produk }}">
                                     @else
                                         Product Image
                                     @endif

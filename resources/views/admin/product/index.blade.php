@@ -825,7 +825,7 @@
                             <td>{{ Str::limit($product->deskripsi, 50) }}</td>
                             <td>
                                 @if($product->gambar)
-                                    <img src="{{ asset('storage/products/' . $product->gambar) }}" alt="{{ $product->nama_produk }}" width="80" class="product-image">
+                                    <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}" width="80" class="product-image">
                                 @else
                                     <div class="product-image">Tidak ada gambar</div>
                                 @endif

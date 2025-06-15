@@ -600,7 +600,7 @@
                     <a href="{{ route('products.show', $product->id) }}">
                         <div class="product-card">
                             <div class="product-image">
-                              <img src="{{ asset('storage/products/' . $product->gambar) }}" alt="{{ $product->nama_produk }}">
+                              <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}">
                             </div>
                             <h3 class="product-title">{{ $product->nama_produk }}</h3>
                             <div class="product-price">Rp{{ number_format($product->harga) }}</div>
