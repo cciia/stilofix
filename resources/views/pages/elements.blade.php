@@ -16,6 +16,7 @@
         body {
             color: #333;
             line-height: 1.6;
+            background-color: #fff;
         }
         
         a {
@@ -100,32 +101,74 @@
             justify-content: center;
         }
         
-        /* Page Banner */
+        /* Page Banner with Image */
         .page-banner {
+            position: relative;
             background-color: #f5f5f0;
-            padding: 40px 0;
+            padding: 0;
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
         }
         
         .page-title {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .breadcrumb {
             display: flex;
             gap: 10px;
-            font-size: 14px;
-            color: #666;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.2s;
         }
         
         .breadcrumb a:hover {
+            color: white;
             text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         /* Elements Content */
         .elements-content {
             padding: 60px 0;
+            background-color: #fff;
         }
         
         .section {
@@ -137,6 +180,7 @@
             font-weight: 600;
             margin-bottom: 30px;
             text-align: center;
+            color: #333;
         }
         
         /* Style Guide Section */
@@ -150,13 +194,15 @@
         .style-card {
             background: #fff;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e5e5e5;
         }
         
         .style-card h3 {
             margin-bottom: 20px;
             font-size: 20px;
+            color: #333;
         }
         
         /* Color Palette */
@@ -175,11 +221,13 @@
             height: 80px;
             border-radius: 8px;
             margin-bottom: 10px;
+            border: 1px solid #e5e5e5;
         }
         
         .color-name {
             font-size: 14px;
             font-weight: 500;
+            color: #333;
         }
         
         .color-code {
@@ -187,15 +235,13 @@
             color: #666;
         }
         
-        /* Primary Colors */
-        .primary-black { background-color: #000; }
-        .primary-white { background-color: #fff; border: 1px solid #ddd; }
-        .primary-grey { background-color: #666; }
-        
-        /* Accent Colors */
-        .accent-blue { background-color: #4169E1; }
-        .accent-red { background-color: #FF6B6B; }
-        .accent-green { background-color: #4CAF50; }
+        /* Brand Colors */
+        .brand-black { background-color: #333; }
+        .brand-white { background-color: #fff; }
+        .brand-grey { background-color: #666; }
+        .brand-cream { background-color: #f5f5f0; }
+        .brand-dark-grey { background-color: #1a1a1a; }
+        .brand-light-grey { background-color: #f8f9fa; }
         
         /* Typography */
         .typography-examples {
@@ -206,7 +252,7 @@
         
         .typography-item {
             padding: 15px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e5e5e5;
         }
         
         .typography-item:last-child {
@@ -219,57 +265,61 @@
             margin-bottom: 5px;
         }
         
-        .heading-1 { font-size: 36px; font-weight: 700; }
-        .heading-2 { font-size: 28px; font-weight: 600; }
-        .heading-3 { font-size: 24px; font-weight: 600; }
-        .body-text { font-size: 16px; font-weight: 400; }
-        .small-text { font-size: 14px; font-weight: 400; }
+        .heading-1 { font-size: 36px; font-weight: 700; color: #333; }
+        .heading-2 { font-size: 28px; font-weight: 600; color: #333; }
+        .heading-3 { font-size: 24px; font-weight: 600; color: #333; }
+        .body-text { font-size: 16px; font-weight: 400; color: #666; }
+        .small-text { font-size: 14px; font-weight: 400; color: #666; }
         
-        /* Outfit Components */
-        .outfit-components {
+        /* Product Categories */
+        .product-categories {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
         
-        .component-card {
+        .category-card {
             background: #fff;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e5e5e5;
             transition: transform 0.3s ease;
         }
         
-        .component-card:hover {
+        .category-card:hover {
             transform: translateY(-5px);
         }
         
-        .component-image {
+        .category-image {
             height: 200px;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 48px;
+            color: white;
         }
         
-        .component-content {
+        .category-content {
             padding: 20px;
         }
         
-        .component-title {
+        .category-title {
             font-size: 18px;
             font-weight: 600;
             margin-bottom: 10px;
+            color: #333;
         }
         
-        .component-description {
+        .category-description {
             color: #666;
             font-size: 14px;
+            line-height: 1.6;
         }
         
-        /* Style Collections */
-        .style-collections {
+        /* Brand Collections */
+        .brand-collections {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -277,9 +327,10 @@
         
         .collection-card {
             background: #fff;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e5e5e5;
             transition: transform 0.3s ease;
         }
         
@@ -289,7 +340,7 @@
         
         .collection-image {
             height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #333 0%, #666 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -306,18 +357,20 @@
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 10px;
+            color: #333;
         }
         
         .collection-description {
             color: #666;
             margin-bottom: 15px;
+            line-height: 1.6;
         }
         
         .collection-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #000;
+            color: #333;
             font-weight: 500;
             transition: color 0.2s;
         }
@@ -336,13 +389,15 @@
         .ui-card {
             background: #fff;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e5e5e5;
         }
         
         .ui-card h3 {
             margin-bottom: 20px;
             font-size: 18px;
+            color: #333;
         }
         
         /* Buttons */
@@ -355,7 +410,7 @@
         .btn {
             padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
@@ -365,33 +420,34 @@
         }
         
         .btn-primary {
-            background-color: #000;
+            background-color: #333;
             color: #fff;
         }
         
         .btn-primary:hover {
-            background-color: #333;
+            background-color: #555;
         }
         
         .btn-secondary {
             background-color: transparent;
-            color: #000;
-            border: 1px solid #000;
+            color: #333;
+            border: 1px solid #333;
         }
         
         .btn-secondary:hover {
-            background-color: #000;
+            background-color: #333;
             color: #fff;
         }
         
         .btn-outline {
             background-color: transparent;
             color: #666;
-            border: 1px solid #ddd;
+            border: 1px solid #e5e5e5;
         }
         
         .btn-outline:hover {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
+            border-color: #333;
         }
         
         /* Form Elements */
@@ -410,18 +466,20 @@
         .form-label {
             font-size: 14px;
             font-weight: 500;
+            color: #333;
         }
         
         .form-input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 12px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
             font-size: 14px;
+            transition: border-color 0.2s;
         }
         
         .form-input:focus {
             outline: none;
-            border-color: #000;
+            border-color: #333;
         }
         
         /* Icons */
@@ -442,7 +500,7 @@
         }
         
         .icon-item:hover {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
         }
         
         .icon-name {
@@ -574,8 +632,8 @@
 
         @media (max-width: 768px) {
             .style-guide,
-            .outfit-components,
-            .style-collections,
+            .product-categories,
+            .brand-collections,
             .ui-components {
                 grid-template-columns: 1fr;
             }
@@ -589,11 +647,27 @@
                 flex-wrap: wrap;
                 gap: 30px;
             }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .page-banner {
+                height: 300px;
+            }
         }
         
         @media (max-width: 576px) {
             .nav-menu {
                 display: none;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .page-banner {
+                height: 250px;
             }
         }
     </style>
@@ -640,14 +714,17 @@
         </div>
     </header>
 
-    <!-- Page Banner -->
+    <!-- Page Banner with Image -->
     <section class="page-banner">
-        <div class="container">
-            <h1 class="page-title">Elements</h1>
-            <div class="breadcrumb">
-                <a href="index.html">Home</a>
-                <span>/</span>
-                <span>Elements</span>
+        <img src="/images/bannerelement.jpg" alt="Elements Banner" class="banner-image">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h1 class="page-title">Elements</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <span>Elements</span>
+                </div>
             </div>
         </div>
     </section>
@@ -655,43 +732,43 @@
     <!-- Elements Content -->
     <section class="elements-content">
         <div class="container">
-            <!-- Style Guide Section -->
+            <!-- Brand Style Guide Section -->
             <div class="section">
-                <h2 class="section-title">Style Guide</h2>
+                <h2 class="section-title">Brand Style Guide</h2>
                 <div class="style-guide">
-                    <!-- Color Palette -->
+                    <!-- Brand Color Palette -->
                     <div class="style-card">
-                        <h3>Color Palette</h3>
+                        <h3>Brand Colors</h3>
                         <div class="color-palette">
                             <div class="color-item">
-                                <div class="color-swatch primary-black"></div>
-                                <div class="color-name">Primary Black</div>
-                                <div class="color-code">#000000</div>
+                                <div class="color-swatch brand-black"></div>
+                                <div class="color-name">Brand Black</div>
+                                <div class="color-code">#333333</div>
                             </div>
                             <div class="color-item">
-                                <div class="color-swatch primary-white"></div>
-                                <div class="color-name">Primary White</div>
+                                <div class="color-swatch brand-white"></div>
+                                <div class="color-name">Pure White</div>
                                 <div class="color-code">#FFFFFF</div>
                             </div>
                             <div class="color-item">
-                                <div class="color-swatch primary-grey"></div>
-                                <div class="color-name">Primary Grey</div>
+                                <div class="color-swatch brand-grey"></div>
+                                <div class="color-name">Medium Grey</div>
                                 <div class="color-code">#666666</div>
                             </div>
                             <div class="color-item">
-                                <div class="color-swatch accent-blue"></div>
-                                <div class="color-name">Accent Blue</div>
-                                <div class="color-code">#4169E1</div>
+                                <div class="color-swatch brand-cream"></div>
+                                <div class="color-name">Brand Cream</div>
+                                <div class="color-code">#F5F5F0</div>
                             </div>
                             <div class="color-item">
-                                <div class="color-swatch accent-red"></div>
-                                <div class="color-name">Accent Red</div>
-                                <div class="color-code">#FF6B6B</div>
+                                <div class="color-swatch brand-dark-grey"></div>
+                                <div class="color-name">Dark Grey</div>
+                                <div class="color-code">#1A1A1A</div>
                             </div>
                             <div class="color-item">
-                                <div class="color-swatch accent-green"></div>
-                                <div class="color-name">Accent Green</div>
-                                <div class="color-code">#4CAF50</div>
+                                <div class="color-swatch brand-light-grey"></div>
+                                <div class="color-name">Light Grey</div>
+                                <div class="color-code">#F8F9FA</div>
                             </div>
                         </div>
                     </div>
@@ -702,87 +779,87 @@
                         <div class="typography-examples">
                             <div class="typography-item">
                                 <div class="typography-label">Heading 1 - 36px Bold</div>
-                                <div class="heading-1">The quick brown fox</div>
+                                <div class="heading-1">Stilo Premium Collection</div>
                             </div>
                             <div class="typography-item">
                                 <div class="typography-label">Heading 2 - 28px Semibold</div>
-                                <div class="heading-2">The quick brown fox</div>
+                                <div class="heading-2">Quality Branded Products</div>
                             </div>
                             <div class="typography-item">
                                 <div class="typography-label">Heading 3 - 24px Semibold</div>
-                                <div class="heading-3">The quick brown fox</div>
+                                <div class="heading-3">Authentic & Original</div>
                             </div>
                             <div class="typography-item">
                                 <div class="typography-label">Body Text - 16px Regular</div>
-                                <div class="body-text">The quick brown fox jumps over the lazy dog</div>
+                                <div class="body-text">Discover our curated selection of premium branded products with guaranteed authenticity and exceptional quality.</div>
                             </div>
                             <div class="typography-item">
                                 <div class="typography-label">Small Text - 14px Regular</div>
-                                <div class="small-text">The quick brown fox jumps over the lazy dog</div>
+                                <div class="small-text">All products come with official warranty and authenticity guarantee.</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Outfit Components Section -->
+            <!-- Product Categories Section -->
             <div class="section">
-                <h2 class="section-title">Outfit Components</h2>
-                <div class="outfit-components">
-                    <div class="component-card">
-                        <div class="component-image">👕</div>
-                        <div class="component-content">
-                            <h3 class="component-title">Tops</h3>
-                            <p class="component-description">T-shirts, shirts, blouses, sweaters, and all upper body garments.</p>
+                <h2 class="section-title">Product Categories</h2>
+                <div class="product-categories">
+                    <div class="category-card">
+                        <div class="category-image">👕</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Fashion & Apparel</h3>
+                            <p class="category-description">Premium branded clothing from international and local designers. T-shirts, shirts, dresses, and more.</p>
                         </div>
                     </div>
-                    <div class="component-card">
-                        <div class="component-image">👖</div>
-                        <div class="component-content">
-                            <h3 class="component-title">Bottoms</h3>
-                            <p class="component-description">Pants, jeans, shorts, skirts, and all lower body garments.</p>
+                    <div class="category-card">
+                        <div class="category-image">👟</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Footwear</h3>
+                            <p class="category-description">Authentic branded shoes, sneakers, boots, and sandals from top global brands.</p>
                         </div>
                     </div>
-                    <div class="component-card">
-                        <div class="component-image">🧥</div>
-                        <div class="component-content">
-                            <h3 class="component-title">Outerwear</h3>
-                            <p class="component-description">Jackets, coats, blazers, and all outer layer garments.</p>
+                    <div class="category-card">
+                        <div class="category-image">👜</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Bags & Accessories</h3>
+                            <p class="category-description">Designer handbags, backpacks, wallets, and premium accessories for every occasion.</p>
                         </div>
                     </div>
-                    <div class="component-card">
-                        <div class="component-image">👟</div>
-                        <div class="component-content">
-                            <h3 class="component-title">Footwear</h3>
-                            <p class="component-description">Shoes, boots, sneakers, and all types of footwear.</p>
+                    <div class="category-card">
+                        <div class="category-image">⌚</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Watches & Jewelry</h3>
+                            <p class="category-description">Luxury timepieces and fine jewelry from renowned brands with authenticity certificates.</p>
                         </div>
                     </div>
-                    <div class="component-card">
-                        <div class="component-image">👜</div>
-                        <div class="component-content">
-                            <h3 class="component-title">Accessories</h3>
-                            <p class="component-description">Bags, belts, jewelry, hats, and all fashion accessories.</p>
+                    <div class="category-card">
+                        <div class="category-image">🕶️</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Eyewear</h3>
+                            <p class="category-description">Designer sunglasses and optical frames from premium brands with UV protection.</p>
                         </div>
                     </div>
-                    <div class="component-card">
-                        <div class="component-image">🕶️</div>
-                        <div class="component-content">
-                            <h3 class="component-title">Eyewear</h3>
-                            <p class="component-description">Sunglasses, glasses, and all types of eyewear accessories.</p>
+                    <div class="category-card">
+                        <div class="category-image">💄</div>
+                        <div class="category-content">
+                            <h3 class="category-title">Beauty & Cosmetics</h3>
+                            <p class="category-description">Authentic branded cosmetics, skincare, and beauty products from trusted manufacturers.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Style Collections Section -->
+            <!-- Brand Collections Section -->
             <div class="section">
-                <h2 class="section-title">Style Collections</h2>
-                <div class="style-collections">
+                <h2 class="section-title">Brand Collections</h2>
+                <div class="brand-collections">
                     <div class="collection-card">
-                        <div class="collection-image">STREETWEAR</div>
+                        <div class="collection-image">LUXURY</div>
                         <div class="collection-content">
-                            <h3 class="collection-title">Streetwear</h3>
-                            <p class="collection-description">Urban-inspired fashion with a focus on comfort and contemporary style. Perfect for casual everyday wear.</p>
+                            <h3 class="collection-title">Luxury Collection</h3>
+                            <p class="collection-description">Exclusive high-end branded products from world-renowned luxury brands. Premium quality with authentic certificates.</p>
                             <a href="#" class="collection-link">
                                 Explore Collection
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -792,10 +869,10 @@
                         </div>
                     </div>
                     <div class="collection-card">
-                        <div class="collection-image">CASUAL</div>
+                        <div class="collection-image">PREMIUM</div>
                         <div class="collection-content">
-                            <h3 class="collection-title">Casual</h3>
-                            <p class="collection-description">Relaxed and comfortable pieces for everyday activities. Effortless style that doesn't compromise on quality.</p>
+                            <h3 class="collection-title">Premium Selection</h3>
+                            <p class="collection-description">Carefully curated premium branded items that offer exceptional quality and style at competitive prices.</p>
                             <a href="#" class="collection-link">
                                 Explore Collection
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -805,10 +882,10 @@
                         </div>
                     </div>
                     <div class="collection-card">
-                        <div class="collection-image">FORMAL</div>
+                        <div class="collection-image">TRENDING</div>
                         <div class="collection-content">
-                            <h3 class="collection-title">Formal</h3>
-                            <p class="collection-description">Sophisticated and elegant pieces for professional and special occasions. Timeless designs with modern touches.</p>
+                            <h3 class="collection-title">Trending Now</h3>
+                            <p class="collection-description">Latest trending branded products that are popular among fashion enthusiasts and style influencers.</p>
                             <a href="#" class="collection-link">
                                 Explore Collection
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -818,10 +895,10 @@
                         </div>
                     </div>
                     <div class="collection-card">
-                        <div class="collection-image">VINTAGE</div>
+                        <div class="collection-image">LIMITED</div>
                         <div class="collection-content">
-                            <h3 class="collection-title">Vintage</h3>
-                            <p class="collection-description">Classic styles with a nostalgic touch. Timeless pieces that never go out of fashion.</p>
+                            <h3 class="collection-title">Limited Edition</h3>
+                            <p class="collection-description">Exclusive limited edition branded items that are rare and highly sought after by collectors.</p>
                             <a href="#" class="collection-link">
                                 Explore Collection
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -831,10 +908,10 @@
                         </div>
                     </div>
                     <div class="collection-card">
-                        <div class="collection-image">MINIMALIST</div>
+                        <div class="collection-image">BESTSELLER</div>
                         <div class="collection-content">
-                            <h3 class="collection-title">Minimalist</h3>
-                            <p class="collection-description">Clean lines and simple designs. Less is more philosophy with focus on quality and functionality.</p>
+                            <h3 class="collection-title">Best Sellers</h3>
+                            <p class="collection-description">Most popular branded products loved by our customers. Proven quality and style that never goes out of fashion.</p>
                             <a href="#" class="collection-link">
                                 Explore Collection
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -844,10 +921,10 @@
                         </div>
                     </div>
                     <div class="collection-card">
-                        <div class="collection-image">BOHEMIAN</div>
+                        <div class="collection-image">NEW ARRIVAL</div>
                         <div class="collection-content">
-                            <h3 class="collection-title">Bohemian</h3>
-                            <p class="collection-description">Free-spirited and artistic styles with flowing fabrics and unique patterns. Express your creativity.</p>
+                            <h3 class="collection-title">New Arrivals</h3>
+                            <p class="collection-description">Fresh branded products just arrived in our store. Be the first to get the latest collections from top brands.</p>
                             <a href="#" class="collection-link">
                                 Explore Collection
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -867,9 +944,9 @@
                     <div class="ui-card">
                         <h3>Buttons</h3>
                         <div class="button-examples">
-                            <button class="btn btn-primary">Primary Button</button>
-                            <button class="btn btn-secondary">Secondary Button</button>
-                            <button class="btn btn-outline">Outline Button</button>
+                            <button class="btn btn-primary">Shop Now</button>
+                            <button class="btn btn-secondary">Add to Cart</button>
+                            <button class="btn btn-outline">View Details</button>
                         </div>
                     </div>
 
@@ -878,19 +955,20 @@
                         <h3>Form Elements</h3>
                         <div class="form-examples">
                             <div class="form-group">
-                                <label class="form-label">Text Input</label>
-                                <input type="text" class="form-input" placeholder="Enter text here">
+                                <label class="form-label">Search Products</label>
+                                <input type="text" class="form-input" placeholder="Search branded products...">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Email Input</label>
-                                <input type="email" class="form-input" placeholder="Enter email">
+                                <label class="form-label">Email Newsletter</label>
+                                <input type="email" class="form-input" placeholder="Enter your email">
                             </div>
                             <div class="form-group">
-                                <label class="form-label">Select Dropdown</label>
+                                <label class="form-label">Product Category</label>
                                 <select class="form-input">
-                                    <option>Choose an option</option>
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
+                                    <option>All Categories</option>
+                                    <option>Fashion & Apparel</option>
+                                    <option>Footwear</option>
+                                    <option>Bags & Accessories</option>
                                 </select>
                             </div>
                         </div>
@@ -912,13 +990,13 @@
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
-                                <span class="icon-name">User</span>
+                                <span class="icon-name">Account</span>
                             </div>
                             <div class="icon-item">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                                 </svg>
-                                <span class="icon-name">Heart</span>
+                                <span class="icon-name">Wishlist</span>
                             </div>
                             <div class="icon-item">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -926,7 +1004,20 @@
                                     <line x1="3" y1="6" x2="21" y2="6"></line>
                                     <path d="M16 10a4 4 0 0 1-8 0"></path>
                                 </svg>
-                                <span class="icon-name">Cart</span>
+                                <span class="icon-name">Shopping</span>
+                            </div>
+                            <div class="icon-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M9 12l2 2 4-4"></path>
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                </svg>
+                                <span class="icon-name">Verified</span>
+                            </div>
+                            <div class="icon-item">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                </svg>
+                                <span class="icon-name">Premium</span>
                             </div>
                         </div>
                     </div>
@@ -995,7 +1086,7 @@
                         <div class="payment-icon">BCA</div>
                         <div class="payment-icon">BRI</div>
                         <div class="payment-icon">BSI</div>
-                        <div class="payment-icon">MANDIRI</div>
+                        <div class="payment-icon">Mandiri</div>
                     </div>
                     <div class="language-selector">
                         <div class="selector">ID</div>

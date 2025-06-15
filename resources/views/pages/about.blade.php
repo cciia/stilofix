@@ -16,6 +16,7 @@
         body {
             color: #333;
             line-height: 1.6;
+            background-color: #fff;
         }
         
         a {
@@ -100,32 +101,74 @@
             justify-content: center;
         }
         
-        /* Page Banner */
+        /* Page Banner with Image */
         .page-banner {
+            position: relative;
             background-color: #f5f5f0;
-            padding: 40px 0;
+            padding: 0;
+            overflow: hidden;
+            height: 400px;
+        }
+        
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .banner-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
         }
         
         .page-title {
-            font-size: 36px;
+            font-size: 48px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .breadcrumb {
             display: flex;
             gap: 10px;
-            font-size: 14px;
-            color: #666;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .breadcrumb a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: color 0.2s;
         }
         
         .breadcrumb a:hover {
+            color: white;
             text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         /* Pages Content */
         .pages-content {
             padding: 60px 0;
+            background-color: #fff;
         }
         
         .pages-grid {
@@ -137,20 +180,21 @@
         
         .page-card {
             background: #fff;
-            border: 1px solid #eee;
-            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .page-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
         
         .page-card-image {
             height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #333 0%, #555 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -166,18 +210,20 @@
             font-size: 20px;
             font-weight: 600;
             margin-bottom: 10px;
+            color: #333;
         }
         
         .page-card-description {
             color: #666;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
         
         .page-card-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            color: #000;
+            color: #333;
             font-weight: 500;
             transition: color 0.2s;
         }
@@ -196,17 +242,19 @@
             font-weight: 600;
             margin-bottom: 30px;
             text-align: center;
+            color: #333;
         }
         
         .section-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            color: #666;
         }
         
         /* About Us Section */
         .about-section {
-            background-color: #f9f9f9;
+            background-color: #f8f9fa;
             padding: 60px 0;
             margin: 60px 0;
         }
@@ -221,17 +269,27 @@
         .about-text h3 {
             font-size: 24px;
             margin-bottom: 20px;
+            color: #333;
         }
         
         .about-text p {
             margin-bottom: 15px;
             color: #666;
+            line-height: 1.7;
         }
         
         .about-image {
-            height: 300px;
+            height: 400px;
             background-color: #ddd;
-            border-radius: 8px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         /* Contact Section */
@@ -248,15 +306,23 @@
             display: block;
             margin-bottom: 5px;
             font-weight: 500;
+            color: #333;
         }
         
         .form-group input,
         .form-group textarea {
             width: 100%;
             padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
             font-size: 14px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #333;
         }
         
         .form-group textarea {
@@ -265,23 +331,24 @@
         }
         
         .submit-btn {
-            background-color: #000;
+            background-color: #333;
             color: #fff;
             padding: 12px 30px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 16px;
             font-weight: 500;
+            transition: background-color 0.2s;
         }
         
         .submit-btn:hover {
-            background-color: #333;
+            background-color: #555;
         }
         
         /* FAQ Section */
         .faq-item {
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e5e5e5;
             margin-bottom: 20px;
         }
         
@@ -292,12 +359,14 @@
             justify-content: space-between;
             align-items: center;
             font-weight: 500;
+            color: #333;
         }
         
         .faq-answer {
             padding-bottom: 20px;
             color: #666;
             display: none;
+            line-height: 1.6;
         }
         
         .faq-answer.active {
@@ -306,6 +375,8 @@
         
         .faq-icon {
             transition: transform 0.3s;
+            font-size: 20px;
+            color: #333;
         }
         
         .faq-icon.active {
@@ -317,18 +388,27 @@
             width: 100%;
             border-collapse: collapse;
             margin: 30px 0;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
         .size-table th,
         .size-table td {
             padding: 12px;
             text-align: center;
-            border: 1px solid #ddd;
+            border-bottom: 1px solid #e5e5e5;
         }
         
         .size-table th {
-            background-color: #f5f5f5;
+            background-color: #f8f9fa;
             font-weight: 600;
+            color: #333;
+        }
+        
+        .size-table tr:last-child td {
+            border-bottom: none;
         }
         
         /* Testimonials */
@@ -341,18 +421,21 @@
         .testimonial-card {
             background: #fff;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border: 1px solid #e5e5e5;
         }
         
         .testimonial-text {
             font-style: italic;
             margin-bottom: 20px;
             color: #666;
+            line-height: 1.6;
         }
         
         .testimonial-author {
             font-weight: 600;
+            color: #333;
         }
         
         .testimonial-rating {
@@ -504,11 +587,27 @@
                 flex-wrap: wrap;
                 gap: 30px;
             }
+            
+            .page-title {
+                font-size: 36px;
+            }
+            
+            .page-banner {
+                height: 300px;
+            }
         }
         
         @media (max-width: 576px) {
             .nav-menu {
                 display: none;
+            }
+            
+            .page-title {
+                font-size: 28px;
+            }
+            
+            .page-banner {
+                height: 250px;
             }
         }
     </style>
@@ -555,14 +654,17 @@
         </div>
     </header>
 
-    <!-- Page Banner -->
+    <!-- Page Banner with Image -->
     <section class="page-banner">
-        <div class="container">
-            <h1 class="page-title">Pages</h1>
-            <div class="breadcrumb">
-                <a href="index.html">Home</a>
-                <span>/</span>
-                <span>Pages</span>
+        <img src="/images/bannerabout.jpg" alt="Pages Banner" class="banner-image">
+        <div class="banner-overlay">
+            <div class="banner-content">
+                <h1 class="page-title">About</h1>
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <span>Pages</span>
+                </div>
             </div>
         </div>
     </section>
@@ -579,7 +681,7 @@
                     </div>
                     <div class="page-card-content">
                         <h3 class="page-card-title">About Us</h3>
-                        <p class="page-card-description">Discover our story, mission, and the passion behind Stilo. Learn about our journey in creating quality fashion for everyone.</p>
+                        <p class="page-card-description">Discover our story, mission, and the passion behind Stilo. Learn about our journey in creating quality branded fashion for everyone.</p>
                         <a href="#about" class="page-card-link">
                             Learn More
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -683,12 +785,13 @@
                         <div class="about-content">
                             <div class="about-text">
                                 <h3>Our Story</h3>
-                                <p>Founded in 2020, Stilo was born from a passion for creating timeless, quality fashion that speaks to the modern individual. We believe that great style shouldn't come at the expense of comfort or sustainability.</p>
-                                <p>Our mission is to provide carefully curated pieces that blend contemporary design with classic elegance, ensuring that every item in your wardrobe tells a story of quality and conscious choice.</p>
-                                <p>From our humble beginnings as a small online boutique to becoming a trusted name in fashion, we've remained committed to our core values: quality, sustainability, and exceptional customer service.</p>
+                                <p>Didirikan pada tahun 2025, Stilo hadir sebagai destinasi terpercaya untuk produk branded berkualitas tinggi. Kami memahami bahwa setiap pelanggan menginginkan produk original dengan kualitas terbaik dan harga yang kompetitif.</p>
+                                <p>Misi kami adalah menyediakan koleksi produk branded pilihan dari berbagai kategori, mulai dari fashion, aksesoris, hingga lifestyle products. Setiap item yang kami jual telah melalui proses kurasi ketat untuk memastikan keaslian dan kualitasnya.</p>
+                                <p>Dengan komitmen terhadap kepuasan pelanggan, Stilo terus berinovasi dalam memberikan pengalaman berbelanja yang mudah, aman, dan menyenangkan. Kami percaya bahwa produk berkualitas tinggi harus dapat diakses oleh semua kalangan.</p>
+                                <p>Tim Stilo terdiri dari para profesional berpengalaman yang memiliki passion dalam dunia retail dan fashion. Kami selalu mengutamakan pelayanan terbaik dan kepercayaan pelanggan sebagai fondasi utama bisnis kami.</p>
                             </div>
                             <div class="about-image">
-                                <img src="/placeholder.svg?height=300&width=400&text=About+Stilo" alt="About Stilo">
+                                <img src="/images/aboutstilo.jpg" alt="About Stilo Team">
                             </div>
                         </div>
                     </div>
@@ -728,38 +831,38 @@
                 <div class="faq-container">
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>How do I track my order?</span>
+                            <span>Bagaimana cara melacak pesanan saya?</span>
                             <span class="faq-icon">+</span>
                         </div>
                         <div class="faq-answer">
-                            Once your order ships, you'll receive a tracking number via email. You can use this number to track your package on our website or the carrier's website.
+                            Setelah pesanan Anda dikirim, Anda akan menerima nomor resi melalui email atau WhatsApp. Anda dapat menggunakan nomor ini untuk melacak paket di website kurir yang bersangkutan.
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>What is your return policy?</span>
+                            <span>Bagaimana kebijakan pengembalian barang?</span>
                             <span class="faq-icon">+</span>
                         </div>
                         <div class="faq-answer">
-                            We offer a 30-day return policy for unworn items with original tags. Returns are free for customers in the United States.
+                            Kami menerima pengembalian barang dalam 7 hari untuk produk yang belum digunakan dengan kondisi dan kemasan asli. Biaya pengembalian ditanggung pembeli.
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>Do you ship internationally?</span>
+                            <span>Apakah produk yang dijual original?</span>
                             <span class="faq-icon">+</span>
                         </div>
                         <div class="faq-answer">
-                            Yes, we ship to most countries worldwide. International shipping rates and delivery times vary by location.
+                            Ya, semua produk yang kami jual adalah 100% original dan bergaransi. Kami bekerja sama langsung dengan distributor resmi dan authorized dealer.
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question">
-                            <span>How do I care for my Stilo products?</span>
+                            <span>Bagaimana cara pembayaran yang tersedia?</span>
                             <span class="faq-icon">+</span>
                         </div>
                         <div class="faq-answer">
-                            Care instructions are included with each product. Generally, we recommend machine washing cold and air drying to maintain quality and longevity.
+                            Kami menerima pembayaran melalui transfer bank (BCA, BRI, BSI, Mandiri), e-wallet, dan COD untuk area tertentu. Semua metode pembayaran aman dan terpercaya.
                         </div>
                     </div>
                 </div>
@@ -769,7 +872,7 @@
             <section id="size-guide" class="page-section">
                 <h2 class="section-title">Size Guide</h2>
                 <div class="section-content">
-                    <p>Find your perfect fit with our size guide. All measurements are in inches.</p>
+                    <p>Find your perfect fit with our size guide. All measurements are in centimeters.</p>
                 </div>
                 <table class="size-table">
                     <thead>
@@ -783,39 +886,39 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>XS</td>
-                            <td>32-34</td>
-                            <td>26-28</td>
-                            <td>34-36</td>
-                            <td>26</td>
-                        </tr>
-                        <tr>
                             <td>S</td>
-                            <td>34-36</td>
-                            <td>28-30</td>
-                            <td>36-38</td>
-                            <td>27</td>
+                            <td>86-91</td>
+                            <td>71-76</td>
+                            <td>86-91</td>
+                            <td>66</td>
                         </tr>
                         <tr>
                             <td>M</td>
-                            <td>36-38</td>
-                            <td>30-32</td>
-                            <td>38-40</td>
-                            <td>28</td>
+                            <td>91-96</td>
+                            <td>76-81</td>
+                            <td>91-96</td>
+                            <td>68</td>
                         </tr>
                         <tr>
                             <td>L</td>
-                            <td>38-40</td>
-                            <td>32-34</td>
-                            <td>40-42</td>
-                            <td>29</td>
+                            <td>96-101</td>
+                            <td>81-86</td>
+                            <td>96-101</td>
+                            <td>70</td>
                         </tr>
                         <tr>
                             <td>XL</td>
-                            <td>40-42</td>
-                            <td>34-36</td>
-                            <td>42-44</td>
-                            <td>30</td>
+                            <td>101-106</td>
+                            <td>86-91</td>
+                            <td>101-106</td>
+                            <td>72</td>
+                        </tr>
+                        <tr>
+                            <td>XXL</td>
+                            <td>106-111</td>
+                            <td>91-96</td>
+                            <td>106-111</td>
+                            <td>74</td>
                         </tr>
                     </tbody>
                 </table>
@@ -825,13 +928,13 @@
             <section id="shipping" class="page-section">
                 <h2 class="section-title">Shipping & Returns</h2>
                 <div class="section-content">
-                    <h3>Shipping Information</h3>
-                    <p>We offer free standard shipping on orders over $100. Orders under $100 will be charged $7.95 for standard shipping.</p>
-                    <p>Express shipping is available for $15.95 and typically delivers within 1-2 business days.</p>
+                    <h3>Informasi Pengiriman</h3>
+                    <p>Kami menyediakan gratis ongkir untuk pembelian di atas Rp 500.000. Untuk pembelian di bawah Rp 500.000 akan dikenakan biaya ongkir sesuai tarif kurir.</p>
+                    <p>Pengiriman express tersedia dengan biaya tambahan dan biasanya sampai dalam 1-2 hari kerja untuk area Jabodetabek.</p>
                     
-                    <h3>Return Policy</h3>
-                    <p>We want you to love your Stilo purchase. If you're not completely satisfied, you can return unworn items within 30 days of purchase for a full refund.</p>
-                    <p>Items must be in original condition with all tags attached. Return shipping is free for US customers.</p>
+                    <h3>Kebijakan Pengembalian</h3>
+                    <p>Kami ingin Anda puas dengan pembelian Stilo. Jika tidak sepenuhnya puas, Anda dapat mengembalikan barang yang belum digunakan dalam 7 hari setelah pembelian.</p>
+                    <p>Barang harus dalam kondisi asli dengan semua tag dan kemasan. Biaya pengembalian ditanggung oleh pembeli.</p>
                 </div>
             </section>
 
@@ -841,17 +944,17 @@
                 <div class="testimonials-grid">
                     <div class="testimonial-card">
                         <div class="testimonial-rating">★★★★★</div>
-                        <p class="testimonial-text">"Amazing quality and perfect fit! The jacket I ordered exceeded my expectations. Will definitely be ordering more from Stilo."</p>
+                        <p class="testimonial-text">"Kualitas produk sangat bagus dan original! Pengiriman cepat dan packaging rapi. Pasti akan belanja lagi di Stilo."</p>
                         <div class="testimonial-author">- Sarah M.</div>
                     </div>
                     <div class="testimonial-card">
                         <div class="testimonial-rating">★★★★★</div>
-                        <p class="testimonial-text">"Fast shipping and excellent customer service. The clothes are exactly as described and the quality is outstanding."</p>
+                        <p class="testimonial-text">"Pelayanan customer service sangat responsif dan membantu. Produk sesuai deskripsi dan kualitasnya memuaskan."</p>
                         <div class="testimonial-author">- Michael R.</div>
                     </div>
                     <div class="testimonial-card">
                         <div class="testimonial-rating">★★★★★</div>
-                        <p class="testimonial-text">"I love the sustainable approach and the timeless designs. Stilo has become my go-to brand for quality fashion."</p>
+                        <p class="testimonial-text">"Stilo jadi tempat belanja online favorit saya. Produk branded original dengan harga yang kompetitif. Recommended!"</p>
                         <div class="testimonial-author">- Emma L.</div>
                     </div>
                 </div>
@@ -919,7 +1022,7 @@
                         <div class="payment-icon">BCA</div>
                         <div class="payment-icon">BRI</div>
                         <div class="payment-icon">BSI</div>
-                        <div class="payment-icon">MANDIRI</div>
+                        <div class="payment-icon">Mandiri</div>
                     </div>
                     <div class="language-selector">
                         <div class="selector">ID</div>
@@ -959,7 +1062,7 @@
             const contactForm = document.querySelector('.contact-form');
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Thank you for your message! We\'ll get back to you soon.');
+                alert('Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda.');
                 this.reset();
             });
             

@@ -86,6 +86,28 @@
             background: #e9ecef;
         }
 
+        /* Home Button */
+        .home-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .home-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
         .logout-btn {
             background: #ef4444;
             color: white;
@@ -95,11 +117,12 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 500;
-            transition: background-color 0.2s;
+            transition: all 0.2s;
         }
 
         .logout-btn:hover {
             background: #dc2626;
+            transform: translateY(-1px);
         }
 
         /* Page Header */
@@ -590,6 +613,11 @@
                 justify-content: flex-end;
             }
 
+            .header-right {
+                flex-direction: column;
+                gap: 8px;
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -655,9 +683,21 @@
                         </svg>
                         <span>Admin User</span>
                     </div>
+                    <a href="/" class="home-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                        Kembali ke Home
+                    </a>
                     <form action="{{ route('logout') }}" method="POST" style="display: inline;">
                         @csrf
                         <button type="submit" class="logout-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                                <polyline points="16,17 21,12 16,7"/>
+                                <line x1="21" y1="12" x2="9" y2="12"/>
+                            </svg>
                             Logout
                         </button>
                     </form>

@@ -168,7 +168,7 @@
             margin-bottom: 60px;
         }
 
-        /* Product Images - Modified for single image */
+        /* Product Images */
         .product-images {
             display: flex;
             justify-content: center;
@@ -193,6 +193,25 @@
             height: 100%;
             object-fit: cover;
             border-radius: 12px;
+        }
+
+        /* Tidak Tersedia Overlay */
+        .tidak-tersedia-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 249, 250, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dc3545;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            border: 3px solid #dc3545;
+            z-index: 2;
         }
 
         .zoom-btn {
@@ -228,11 +247,20 @@
             color: #333;
         }
 
+        .product-title.unavailable {
+            color: #6c757d;
+        }
+
         .product-price {
             font-size: 24px;
             font-weight: 600;
             color: #333;
             margin-bottom: 8px;
+        }
+
+        .product-price.unavailable {
+            color: #6c757d;
+            text-decoration: line-through;
         }
 
         .price-original {
@@ -279,167 +307,45 @@
             color: #666;
         }
 
+        /* Product Description - Short version */
         .product-description {
             font-size: 16px;
             color: #666;
             line-height: 1.6;
             margin-bottom: 32px;
-        }
-
-        /* Product Options */
-        .product-options {
-            margin-bottom: 32px;
-        }
-
-        .option-group {
-            margin-bottom: 24px;
-        }
-
-        .option-label {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #333;
-        }
-
-        .color-options {
-            display: flex;
-            gap: 12px;
-        }
-
-        .color-option {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.2s;
-            position: relative;
-        }
-
-        .color-option:hover {
-            transform: scale(1.1);
-        }
-
-        .color-option.selected {
-            border-color: #333;
-            transform: scale(1.1);
-        }
-
-        .color-option.brown { background-color: #92400e; }
-        .color-option.blue { background-color: #3b82f6; }
-        .color-option.black { background-color: #1f2937; }
-        .color-option.grey { background-color: #6b7280; }
-        .color-option.red { background-color: #ef4444; }
-
-        .size-options {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .size-option {
-            padding: 12px 20px;
-            border: 1px solid #e5e5e5;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s;
-            min-width: 50px;
-            text-align: center;
-            background: white;
-        }
-
-        .size-option:hover {
-            border-color: #333;
             background: #f8f9fa;
-        }
-
-        .size-option.selected {
-            background: #333;
-            color: white;
-            border-color: #333;
-        }
-
-        .size-option.unavailable {
-            background: #f5f5f5;
-            color: #999;
-            cursor: not-allowed;
-            position: relative;
-        }
-
-        .size-option.unavailable::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 10%;
-            right: 10%;
-            height: 1px;
-            background: #999;
-            transform: rotate(-15deg);
-        }
-
-        /* Quantity & Actions */
-        .quantity-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-
-        .quantity-label {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .quantity-controls {
-            display: flex;
-            align-items: center;
-            border: 1px solid #e5e5e5;
+            padding: 16px 20px;
             border-radius: 8px;
-            overflow: hidden;
-            background: white;
+            border-left: 4px solid #333;
         }
 
-        .quantity-btn {
-            background: none;
-            border: none;
-            padding: 12px 16px;
-            cursor: pointer;
+        .product-description p {
+            margin-bottom: 0;
+        }
+
+        /* Stock Info */
+        .stock-section {
+            margin-bottom: 32px;
+            padding: 16px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stock-section.available {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #10b981;
+        }
+
+        .stock-section.unavailable {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #ef4444;
+        }
+
+        .stock-text {
             font-size: 18px;
-            transition: background-color 0.2s;
             font-weight: 600;
-        }
-
-        .quantity-btn:hover {
-            background: #f5f5f5;
-        }
-
-        .quantity-input {
-            border: none;
-            padding: 12px 16px;
-            width: 60px;
-            text-align: center;
-            font-size: 16px;
-            background: #f8f9fa;
-            font-weight: 500;
-        }
-
-        .stock-info {
-            font-size: 14px;
-            color: #10b981;
-            font-weight: 500;
-        }
-
-        .stock-info.low {
-            color: #f59e0b;
-        }
-
-        .stock-info.out {
-            color: #ef4444;
         }
 
         /* Action Buttons */
@@ -510,6 +416,18 @@
         .btn-buy-now:hover {
             background: #059669;
             transform: translateY(-2px);
+        }
+
+        .btn-disabled {
+            background: #f5f5f5;
+            color: #999;
+            cursor: not-allowed;
+            flex: 1;
+        }
+
+        .btn-disabled:hover {
+            background: #f5f5f5;
+            transform: none;
         }
 
         /* Product Features */
@@ -618,37 +536,6 @@
             margin-bottom: 8px;
         }
 
-        .size-chart {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .size-chart th,
-        .size-chart td {
-            padding: 12px 16px;
-            text-align: left;
-            border-bottom: 1px solid #e5e5e5;
-        }
-
-        .size-chart th {
-            background: #f8f9fa;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .size-chart tr:last-child td {
-            border-bottom: none;
-        }
-
-        .size-chart tr:hover {
-            background: #f8f9fa;
-        }
-
         /* Reviews */
         .review-item {
             margin-top: 20px;
@@ -701,6 +588,8 @@
         }
 
         .related-item {
+            text-decoration: none;
+            color: inherit;
             cursor: pointer;
             transition: transform 0.2s;
             background: white;
@@ -723,6 +612,14 @@
             justify-content: center;
             color: #999;
             font-size: 14px;
+            overflow: hidden;
+        }
+
+        .related-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Removed zoom effect */
         }
 
         .related-content {
@@ -774,12 +671,6 @@
                 gap: 20px;
             }
 
-            .quantity-section {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-            }
-
             .tab-nav {
                 justify-content: flex-start;
             }
@@ -788,11 +679,6 @@
         @media (max-width: 480px) {
             .container {
                 padding: 0 16px;
-            }
-
-            .color-options,
-            .size-options {
-                flex-wrap: wrap;
             }
 
             .related-grid {
@@ -898,8 +784,13 @@
                     <div class="main-image">
                         @if(isset($product->gambar) && $product->gambar)
                             <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}">
+                            @if($product->status == 'Tidak Tersedia')
+                                <div class="tidak-tersedia-overlay">
+                                    TIDAK TERSEDIA
+                                </div>
+                            @endif
                         @else
-                            Main Product Image
+                            <div style="color: #999; font-size: 18px;">Main Product Image</div>
                         @endif
                         <button class="zoom-btn">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -913,11 +804,13 @@
 
                 <!-- Product Info -->
                 <div class="product-info">
-                    <h1 class="product-title">{{ $product->nama_produk }}</h1>
+                    <h1 class="product-title {{ $product->status == 'Tidak Tersedia' ? 'unavailable' : '' }}">{{ $product->nama_produk }}</h1>
 
-                    <div class="product-price">
+                    <div class="product-price {{ $product->status == 'Tidak Tersedia' ? 'unavailable' : '' }}">
                         Rp{{ number_format($product->harga) }}
-                        <span class="discount-badge">20% OFF</span>
+                        @if($product->status == 'Tersedia')
+                            <span class="discount-badge">20% OFF</span>
+                        @endif
                     </div>
 
                     <div class="product-rating">
@@ -930,38 +823,26 @@
                         </div>
                         <span class="rating-text">4.0 (128 reviews)</span>
                     </div>
-                    <p class="product-description">
-                        {{ \Illuminate\Support\Str::words($product->deskripsi, 20, '...') }}
-                    </p>
 
-                    <!-- Product Options -->
-                    <div class="product-options">
-                        <div class="option-group">
-                            <div class="option-label">Color</div>
-                            <div class="color-options">
-                                <div class="color-option brown selected"></div>
-                                <div class="color-option blue"></div>
-                                <div class="color-option black"></div>
-                                <div class="color-option grey"></div>
-                                <div class="color-option red"></div>
-                            </div>
+                    <!-- Short Description -->
+                    <div class="product-description">
+                        @if($product->deskripsi)
+                            <p>{{ \Illuminate\Support\Str::words($product->deskripsi, 8, '...') }}</p>
+                        @else
+                            <p>Deskripsi produk tidak tersedia.</p>
+                        @endif
+                    </div>
+
+                    <!-- Stock Status -->
+                    <div class="stock-section {{ $product->status == 'Tersedia' ? 'available' : 'unavailable' }}">
+                        <div class="stock-text">
+                            {{ $product->status == 'Tersedia' ? '✓ Tersedia' : '✗ Tidak Tersedia' }}
                         </div>
+                    </div>
 
-                    <!-- Quantity -->
-                        <div class="quantity-section">
-                            <span class="quantity-label">Quantity</span>
-                            <div class="quantity-controls">
-                                <button class="quantity-btn" id="decreaseBtn">-</button>
-                                <input type="number" class="quantity-input" id="quantityInput" value="1" min="1" max="3" readonly>
-                                <button class="quantity-btn" id="increaseBtn">+</button>
-                            </div>
-                            <span class="stock-info">
-                                {{ $product->status === 'Tersedia' ? 'In stock' : 'Out of stock' }}
-                            </span>
-                        </div>
-
-                        <!-- Action Buttons -->
-                        <div class="action-buttons">
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        @if($product->status == 'Tersedia')
                             <a 
                             href="https://web.whatsapp.com/send?phone=6282131447400&text={{ urlencode('Halo, saya mau beli produk ' . $product->nama_produk . '. Apakah masih tersedia? Saya ingin beli.') }}" 
                             class="btn btn-buy-now" 
@@ -981,12 +862,22 @@
                                 </svg>
                                 Add to Cart
                             </button>
-                            <button class="btn btn-icon">
+                        @else
+                            <button class="btn btn-disabled" disabled>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                                    <line x1="9" y1="9" x2="15" y2="15"></line>
                                 </svg>
+                                Tidak Tersedia
                             </button>
-                        </div>
+                        @endif
+                        <button class="btn btn-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                    </div>
 
                     <!-- Product Features -->
                     <div class="product-features">
@@ -1022,9 +913,15 @@
 
                 <div class="tab-content active">
                     <h3>Product Description</h3>
-                    @foreach(explode('|', $product->deskripsi) as $desc)
-                    <p>{{ $desc }}</p>
-                    @endforeach
+                    @if($product->deskripsi)
+                        @foreach(explode('.', $product->deskripsi) as $sentence)
+                            @if(trim($sentence))
+                                <p>{{ trim($sentence) }}.</p>
+                            @endif
+                        @endforeach
+                    @else
+                        <p>Deskripsi produk tidak tersedia.</p>
+                    @endif
                 </div>
 
                 <div class="tab-content">
@@ -1078,23 +975,41 @@
                     @if(isset($relatedProducts))
                         @foreach($relatedProducts as $related)
                         <a href="{{ route('products.show', $related->id) }}" class="related-item">
-                            <div class="related-item">
-                                <div class="related-image">
-                                    @if(isset($related->gambar) && $related->gambar)
-                                        <img src="{{ $related->gambar }}" alt="{{ $related->nama_produk }}">
-                                    @else
-                                        Product Image
-                                    @endif
-                                </div>
-                                <div class="related-content">
-                                    <div class="related-name">{{ $related->nama_produk }}</div>
-                                    <div class="related-price">Rp{{ number_format($related->harga) }}</div>
-                                </div>
+                            <div class="related-image">
+                                @if(isset($related->gambar) && $related->gambar)
+                                    <img src="{{ $related->gambar }}" alt="{{ $related->nama_produk }}">
+                                @else
+                                    Product Image
+                                @endif
                             </div>
+                            <div class="related-content">
+                                <div class="related-name">{{ $related->nama_produk }}</div>
+                                <div class="related-price">Rp{{ number_format($related->harga) }}</div>
+                            </div>
+                        </a>
                         @endforeach
                     @endif
                 </div>
             </div>
         </div>
+    </section>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                btn.classList.add('active');
+                
+                // Show corresponding content
+                const index = Array.from(document.querySelectorAll('.tab-btn')).indexOf(btn);
+                document.querySelectorAll('.tab-content')[index].classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

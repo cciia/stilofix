@@ -225,12 +225,20 @@
             margin-bottom: 30px;
         }
         
+        /* Product card untuk yang tidak tersedia */
+        .product-card.unavailable {
+            opacity: 0.7;
+        }
+        
         .product-image {
             background-color: #f9f9f9;
             margin-bottom: 10px;
             position: relative;
             overflow: hidden;
             aspect-ratio: 1/1.2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .product-image img {
@@ -244,9 +252,47 @@
             transform: scale(1.05);
         }
         
+        /* Tidak Tersedia Overlay */
+        .tidak-tersedia-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(248, 249, 250, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #dc3545;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            border: 2px solid #dc3545;
+            z-index: 2;
+        }
+        
+        /* Tidak Tersedia Text untuk produk tanpa gambar */
+        .tidak-tersedia {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            background-color: #f8f9fa;
+            color: #dc3545;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid #dc3545;
+            text-align: center;
+        }
+        
         .product-title {
             font-size: 14px;
             margin-bottom: 5px;
+        }
+        
+        .product-title.unavailable {
+            color: #6c757d;
         }
         
         .product-price {
@@ -254,21 +300,10 @@
             margin-bottom: 10px;
         }
         
-        .product-colors {
-            display: flex;
-            gap: 5px;
+        .product-price.unavailable {
+            color: #6c757d;
+            text-decoration: line-through;
         }
-        
-        .product-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-        
-        .blue { background-color: #4169E1; }
-        .grey { background-color: #808080; }
-        .red { background-color: #FF6B6B; }
         
         /* Footer */
         footer {
@@ -477,6 +512,11 @@
             .shop-title {
                 font-size: 24px;
             }
+            
+            .tidak-tersedia,
+            .tidak-tersedia-overlay {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -598,17 +638,31 @@
             <div class="product-grid">
                 @foreach ($products as $product)
                     <a href="{{ route('products.show', $product->id) }}">
-                        <div class="product-card">
+                        <div class="product-card {{ $product->status == 'Tidak Tersedia' ? 'unavailable' : '' }}">
                             <div class="product-image">
-                              <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}">
+                                @if($product->status == 'Tidak Tersedia')
+                                    @if($product->gambar)
+                                        <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}">
+                                        <div class="tidak-tersedia-overlay">
+                                            Tidak Tersedia
+                                        </div>
+                                    @else
+                                        <div class="tidak-tersedia">
+                                            Tidak Tersedia
+                                        </div>
+                                    @endif
+                                @else
+                                    @if($product->gambar)
+                                        <img src="{{ $product->gambar }}" alt="{{ $product->nama_produk }}">
+                                    @else
+                                        <div class="tidak-tersedia">
+                                            Gambar Tidak Ada
+                                        </div>
+                                    @endif
+                                @endif
                             </div>
-                            <h3 class="product-title">{{ $product->nama_produk }}</h3>
-                            <div class="product-price">Rp{{ number_format($product->harga) }}</div>
-                            <div class="product-colors">
-                                <span class="product-color blue"></span>
-                                <span class="product-color grey"></span>
-                                <span class="product-color red"></span>
-                            </div>
+                            <h3 class="product-title {{ $product->status == 'Tidak Tersedia' ? 'unavailable' : '' }}">{{ $product->nama_produk }}</h3>
+                            <div class="product-price {{ $product->status == 'Tidak Tersedia' ? 'unavailable' : '' }}">Rp{{ number_format($product->harga) }}</div>
                         </div>
                     </a>
                 @endforeach
