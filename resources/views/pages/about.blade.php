@@ -620,7 +620,6 @@
             <nav class="nav-menu">
                 <a href="/">Home</a>
                 <a href="{{ route('about') }}" class="active">About</a>
-                <a href="{{ route('blog') }}">Blog</a>
                 <a href="{{ route('elements') }}">Elements</a>
             </nav>
             <div class="header-icons">

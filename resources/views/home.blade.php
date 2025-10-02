@@ -528,7 +528,6 @@
             <nav class="nav-menu">
                 <a href="/">Home</a>
                 <a href="{{ route('about') }}">About</a>
-                <a href="{{ route('blog') }}">Blog</a>
                 <a href="{{ route('elements') }}">Elements</a>
             </nav>
             <div class="header-icons">
@@ -589,46 +588,15 @@
         <div class="container">
             <!-- Filter Bar -->
             <div class="filter-bar">
-                <div class="filters">
-                    <div class="filter-item">
-                        <span>Filter by</span>
-                    </div>
-                    <div class="filter-item">
-                        <span>Categories</span>
-                    </div>
-                    <div class="filter-item">
-                        <span>Price</span>
-                    </div>
-                </div>
                 <div class="sorting">
                     <div class="filter-item">
-                        <span>Default Sorting</span>
                     </div>
                     <div class="view-options">
                         <div class="view-option">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="3" width="7" height="7"></rect>
-                                <rect x="14" y="3" width="7" height="7"></rect>
-                                <rect x="3" y="14" width="7" height="7"></rect>
-                                <rect x="14" y="14" width="7" height="7"></rect>
-                            </svg>
                         </div>
                         <div class="view-option">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="8" y1="6" x2="21" y2="6"></line>
-                                <line x1="8" y1="12" x2="21" y2="12"></line>
-                                <line x1="8" y1="18" x2="21" y2="18"></line>
-                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
-                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
-                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
-                            </svg>
                         </div>
                         <div class="view-option">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="3" y1="6" x2="21" y2="6"></line>
-                                <line x1="3" y1="12" x2="21" y2="12"></line>
-                                <line x1="3" y1="18" x2="21" y2="18"></line>
-                            </svg>
                         </div>
                     </div>
                 </div>
